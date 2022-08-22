@@ -16,8 +16,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreateOptionsMenu(meny)
         meny.add("Sindre")
         meny.add("Glomnes")
-        Log.d("INFT2501","meny laget") //vises i LogCat
-        return true // gjor at menyen vil vises
+        Log.d("INFT2501","meny laget")
+        return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean{
