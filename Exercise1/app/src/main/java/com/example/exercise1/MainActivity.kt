@@ -22,10 +22,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean{
         if (item.title.equals("Sindre")) {
-            Log.d("Leksjon", "Valg 'Sindre' er trykket av brukeren")
+            Log.w("Leksjon", "Valg 'Sindre' er trykket av brukeren")
         }
         if (item.title.equals("Glomnes")) {
-            Log.d("Leksjon", "Valg 'Glomnes' er trykket av brukeren")
+            Log.e("Leksjon", "Valg 'Glomnes' er trykket av brukeren")
         }
         return true
     }
