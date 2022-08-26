@@ -1782,7 +1782,6 @@ int id button6 0x7f0801b4
 int id buttonPanel 0x7f080057
 int id button_change_flag 0x7f080058
 int id button_start_activity 0x7f080059
-int id button_stop_activity 0x7f08005a
 int id cache_measures 0x7f08005c
 int id cancel_button 0x7f08005d
 int id center 0x7f08005e
@@ -2081,6 +2080,7 @@ int id textTop 0x7f080180
 int id textView 0x7f080181
 int id textView10 0x7f0801b7
 int id textView11 0x7f0801b8
+int id textView3 0x7f0801b0
 int id text_input_end_icon 0x7f080182
 int id text_input_error_icon 0x7f080183
 int id text_input_start_icon 0x7f080184

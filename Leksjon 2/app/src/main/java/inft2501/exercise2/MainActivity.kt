@@ -27,9 +27,8 @@ class MainActivity : Activity() {
             return
         }
         if (requestCode == numberRequestCode) {
-            val generatedNumber = data.getIntExtra("number", 5)
-            Toast.makeText(this, "Generert tall: $generatedNumber", Toast.LENGTH_LONG)
-                .show()
+            val generatedNumber = data.getIntExtra("randomNumber1", 5)
+            //Toast.makeText(this, "Generert tall: $generatedNumber", Toast.LENGTH_LONG).show()
             val textView = findViewById<View>(R.id.textView) as TextView
             textView.text = "Generert tall: $generatedNumber"
         }

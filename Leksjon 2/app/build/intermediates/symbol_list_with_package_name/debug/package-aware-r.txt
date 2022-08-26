@@ -1783,7 +1783,6 @@ id button6
 id buttonPanel
 id button_change_flag
 id button_start_activity
-id button_stop_activity
 id cache_measures
 id cancel_button
 id center
@@ -2082,6 +2081,7 @@ id textTop
 id textView
 id textView10
 id textView11
+id textView3
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon

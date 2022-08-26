@@ -68,19 +68,11 @@ class MainActivity2  : Activity() {
     }
 
     private fun showResult(message: String) {
-        AlertDialog.Builder(this)
-            .setTitle("Exercise2, task 2")
-            .setMessage(message)
-            .setPositiveButton("Generer tall") { _, _ ->
-                run {
-                    upperLimit = Integer.parseInt(upperLimitView?.text.toString())
-                    intent.putExtra("upperLimit", upperLimit)
-                    val intent = Intent("inft2501.RandomNumberActivity")
-                    startActivityForResult(intent, numberRequestCode)
-                }
-            }
-            .setNegativeButton("Try again", null)
-            .show()
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        upperLimit = Integer.parseInt(upperLimitView?.text.toString())
+        val intent = Intent("inft2501.RandomNumberActivity")
+        intent.putExtra("upperLimit", upperLimit)
+        startActivityForResult(intent, numberRequestCode)
 
     }
 
