@@ -6,20 +6,19 @@ import android.os.Bundle
 import android.view.View
 
 class RandomNumberActivity : Activity() {
-    private var randomNumber = 100;
+    var upperLimit = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_change_flag)
-    }
-
-    fun onClickAvsluttAktivitet(v: View?) {
-        setResult(RESULT_OK, Intent().putExtra("number", randomNumber));
-        // Toast.makeText(applicationContext, value, Toast.LENGTH_SHORT).show();
-        finish()
+        upperLimit = intent.getIntExtra("upperLimit", upperLimit)
     }
 
     fun onClickDrawNewNumber(v: View?) {
-        randomNumber = (0..randomNumber).random();
+        val intent = Intent()
+        intent.putExtra("randomNumber1", (0..upperLimit).random())
+        intent.putExtra("randomNumber2", (0..upperLimit).random())
+        setResult(RESULT_OK, intent)
+        finish()
     }
 }
