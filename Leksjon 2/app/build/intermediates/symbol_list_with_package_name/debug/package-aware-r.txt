@@ -1777,6 +1777,8 @@ id beginning
 id blocking
 id bottom
 id bounce
+id button5
+id button6
 id buttonPanel
 id button_change_flag
 id button_start_activity
@@ -1842,6 +1844,8 @@ id dropdown_menu
 id easeIn
 id easeInOut
 id easeOut
+id editTextTextPersonName4
+id editTextTextPersonName5
 id edit_query
 id elastic
 id end
@@ -2075,6 +2079,10 @@ id textSpacerNoTitle
 id textStart
 id textTop
 id textView
+id textView10
+id textView11
+id textView2
+id textView3
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
@@ -2194,6 +2202,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout main2_activity
 layout material_chip_input_combo
 layout material_clock_display
 layout material_clock_display_divider

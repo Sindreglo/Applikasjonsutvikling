@@ -79,12 +79,12 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/sind
 		ADDED from /Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:6:9-35
 	android:theme
 		ADDED from /Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:10:9-62
-activity#inft2501.exercise2.MainActivity
+activity#inft2501.exercise2.MainActivity2
 ADDED from /Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:11:9-22:20
 	android:label
 		ADDED from /Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:13:13-51
 	android:name
-		ADDED from /Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:12:13-59
+		ADDED from /Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:12:13-60
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
 ADDED from /Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:14:13-17:29
 action#android.intent.action.MAIN

@@ -28,8 +28,8 @@
 19-->/Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:10:9-62
 20        <activity
 20-->/Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:11:9-22:20
-21            android:name="inft2501.exercise2.MainActivity"
-21-->/Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:12:13-59
+21            android:name="inft2501.exercise2.MainActivity2"
+21-->/Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:12:13-60
 22            android:label="@string/title_activity" >
 22-->/Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:13:13-51
 23            <intent-filter>

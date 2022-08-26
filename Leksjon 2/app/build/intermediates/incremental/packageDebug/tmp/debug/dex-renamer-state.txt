@@ -1,4 +1,4 @@
-#Fri Aug 26 12:57:37 CEST 2022
+#Fri Aug 26 14:32:19 CEST 2022
 base.0=/Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

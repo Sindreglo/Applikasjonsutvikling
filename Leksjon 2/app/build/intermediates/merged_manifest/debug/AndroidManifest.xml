@@ -18,7 +18,7 @@
         android:testOnly="true"
         android:theme="@style/Theme.AktiviteterOgIntensjoner" >
         <activity
-            android:name="inft2501.exercise2.MainActivity"
+            android:name="inft2501.exercise2.MainActivity2"
             android:label="@string/title_activity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -76,6 +76,10 @@
         "source": "/Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/build/generated/res/pngs/debug/drawable-hdpi/ic_launcher_background.png"
     },
     {
+        "merged": "/Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/build/intermediates/res/merged/debug/layout_main2_activity.xml.flat",
+        "source": "/Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/res/layout/main2_activity.xml"
+    },
+    {
         "merged": "/Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/build/intermediates/res/merged/debug/layout_activity_change_flag.xml.flat",
         "source": "/Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/res/layout/activity_change_flag.xml"
     },
