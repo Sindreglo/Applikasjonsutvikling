@@ -1674,7 +1674,6 @@ int drawable mtrl_popupmenu_background 0x7f07007f
 int drawable mtrl_popupmenu_background_dark 0x7f070080
 int drawable mtrl_tabs_default_indicator 0x7f070081
 int drawable navigation_empty_icon 0x7f070082
-int drawable norway 0x7f070083
 int drawable notification_action_background 0x7f070084
 int drawable notification_bg 0x7f070085
 int drawable notification_bg_low 0x7f070086
@@ -1690,7 +1689,6 @@ int drawable notify_panel_notification_icon_bg 0x7f07008f
 int drawable test_custom_background 0x7f070090
 int drawable tooltip_frame_dark 0x7f070091
 int drawable tooltip_frame_light 0x7f070092
-int drawable uk 0x7f070093
 int id ALT 0x7f080000
 int id BOTTOM_END 0x7f080001
 int id BOTTOM_START 0x7f080002
@@ -1782,7 +1780,6 @@ int id buttonPanel 0x7f080057
 int id button_change_flag 0x7f080058
 int id button_start_activity 0x7f080059
 int id button_stop_activity 0x7f08005a
-int id button_view_alert 0x7f08005b
 int id cache_measures 0x7f08005c
 int id cancel_button 0x7f08005d
 int id center 0x7f08005e
@@ -2365,7 +2362,6 @@ int string path_password_eye_mask_strike_through 0x7f0e0060
 int string path_password_eye_mask_visible 0x7f0e0061
 int string path_password_strike_through 0x7f0e0062
 int string search_menu_title 0x7f0e0063
-int string show_alert 0x7f0e0064
 int string start_random_number 0x7f0e006a
 int string status_bar_notification_info_overflow 0x7f0e0066
 int string title_activity 0x7f0e0067

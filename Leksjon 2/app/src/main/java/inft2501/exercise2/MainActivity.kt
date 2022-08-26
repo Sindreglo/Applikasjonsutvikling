@@ -8,11 +8,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 
 class MainActivity : Activity() {
     private val flagRequestCode: Int = 1
-    private var flagValue = R.drawable.norway
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +24,6 @@ class MainActivity : Activity() {
      */
     fun onClickStartChangeFlagActivity(v: View?) {
         val intent = Intent("inft2501.ChangeFlagActivity")
-        intent.putExtra("flag", flagValue)
         startActivityForResult(intent, flagRequestCode)
     }
 
@@ -38,13 +37,13 @@ class MainActivity : Activity() {
             return
         }
         if (requestCode == flagRequestCode) {
-            flagValue = data.getIntExtra("flag", flagValue)
-            val flag = findViewById<View>(R.id.imageView) as ImageView
-            flag.setImageResource(flagValue)
+            val generatedNumber = data.getIntExtra("flag", 5)
+            Toast.makeText(this, "Generert tall: $generatedNumber", Toast.LENGTH_LONG)
+                .show()
+            val textView = findViewById<View>(R.id.textView) as TextView
+            textView.text = "Generert tall: $generatedNumber"
         }
     }
-
-
     /**
      * Viser en AlertDialog med knapper, når knappene blir trykket på blir den valgte
      * knappen skrevet ut i en Toast

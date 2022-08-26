@@ -1675,7 +1675,6 @@ drawable mtrl_popupmenu_background
 drawable mtrl_popupmenu_background_dark
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
-drawable norway
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low
@@ -1691,7 +1690,6 @@ drawable notify_panel_notification_icon_bg
 drawable test_custom_background
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
-drawable uk
 id ALT
 id BOTTOM_END
 id BOTTOM_START
@@ -1783,7 +1781,6 @@ id buttonPanel
 id button_change_flag
 id button_start_activity
 id button_stop_activity
-id button_view_alert
 id cache_measures
 id cancel_button
 id center
@@ -2366,7 +2363,6 @@ string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
 string search_menu_title
-string show_alert
 string start_random_number
 string status_bar_notification_info_overflow
 string title_activity

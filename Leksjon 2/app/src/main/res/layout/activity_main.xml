@@ -4,17 +4,10 @@
     android:layout_height="match_parent"
     tools:context="inft2501.exercise2.MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/norway" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="93dp"
         android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="75dp"
@@ -30,14 +23,5 @@
         android:layout_centerHorizontal="true"
         android:onClick="onClickStartChangeFlagActivity"
         android:text="@string/start_random_number" />
-
-    <Button
-        android:id="@+id/button_view_alert"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button_start_activity"
-        android:layout_centerHorizontal="true"
-        android:onClick="onClickVisAlertDialog"
-        android:text="@string/show_alert" />
 
 </RelativeLayout>
