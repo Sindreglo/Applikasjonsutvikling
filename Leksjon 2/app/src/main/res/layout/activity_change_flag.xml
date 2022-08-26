@@ -1,0 +1,42 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="inft2501.exercise2.ChangeFlagActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/uk" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="75dp"
+        android:text="ChangeFlagActivity" />
+
+    <Button
+        android:id="@+id/button_stop_activity"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClickAvsluttAktivitet"
+        android:text="@string/to_main" />
+
+    <Button
+        android:id="@+id/button_change_flag"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_stop_activity"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClickEndreFlagg"
+        android:text="@string/generate_number" />
+
+</RelativeLayout>
