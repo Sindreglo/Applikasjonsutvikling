@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
-        android:onClick="onClickStartChangeFlagActivity"
+        android:onClick="onClickStartRandomNumberActivity"
         android:text="@string/start_random_number" />
 
 </RelativeLayout>

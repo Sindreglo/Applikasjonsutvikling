@@ -21,10 +21,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="inft2501.exercise2.ChangeFlagActivity"
+            android:name="inft2501.exercise2.RandomNumberActivity"
             android:label="@string/title_activity">
             <intent-filter>
-                <action android:name="inft2501.ChangeFlagActivity" />
+                <action android:name="inft2501.RandomNumberActivity" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

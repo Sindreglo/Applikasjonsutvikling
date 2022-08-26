@@ -2290,6 +2290,8 @@ string abc_searchview_description_voice
 string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
+string add
+string answer
 string app_name
 string appbar_scrolling_view_behavior
 string bottom_sheet_behavior
@@ -2299,6 +2301,7 @@ string character_counter_overflowed_content_description
 string character_counter_pattern
 string chip_text
 string clear_text_end_icon_content_description
+string correct
 string error_icon_content_description
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
@@ -2357,6 +2360,7 @@ string mtrl_picker_toggle_to_calendar_input_mode
 string mtrl_picker_toggle_to_day_selection
 string mtrl_picker_toggle_to_text_input_mode
 string mtrl_picker_toggle_to_year_selection
+string multiply
 string password_toggle_content_description
 string path_password_eye
 string path_password_eye_mask_strike_through
@@ -2367,6 +2371,8 @@ string start_random_number
 string status_bar_notification_info_overflow
 string title_activity
 string to_main
+string upperLimit
+string wrong_the_correct_answer_is
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style AndroidThemeColorAccentYellow

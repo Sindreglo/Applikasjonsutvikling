@@ -105,18 +105,18 @@ category#android.intent.category.DEFAULT
 ADDED from /Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:20:17-76
 	android:name
 		ADDED from /Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:20:27-73
-activity#inft2501.exercise2.ChangeFlagActivity
+activity#inft2501.exercise2.RandomNumberActivity
 ADDED from /Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:23:9-30:20
 	android:label
 		ADDED from /Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:25:13-51
 	android:name
-		ADDED from /Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:24:13-65
-intent-filter#action:name:inft2501.ChangeFlagActivity+category:name:android.intent.category.DEFAULT
+		ADDED from /Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:24:13-67
+intent-filter#action:name:inft2501.RandomNumberActivity+category:name:android.intent.category.DEFAULT
 ADDED from /Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:26:13-29:29
-action#inft2501.ChangeFlagActivity
-ADDED from /Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:27:17-70
+action#inft2501.RandomNumberActivity
+ADDED from /Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:27:17-72
 	android:name
-		ADDED from /Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:27:25-67
+		ADDED from /Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:27:25-69
 uses-sdk
 INJECTED from /Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml

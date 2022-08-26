@@ -55,15 +55,15 @@
 33        </activity>
 34        <activity
 34-->/Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:23:9-30:20
-35            android:name="inft2501.exercise2.ChangeFlagActivity"
-35-->/Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:24:13-65
+35            android:name="inft2501.exercise2.RandomNumberActivity"
+35-->/Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:24:13-67
 36            android:label="@string/title_activity" >
 36-->/Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:25:13-51
 37            <intent-filter>
 37-->/Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:26:13-29:29
-38                <action android:name="inft2501.ChangeFlagActivity" />
-38-->/Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:27:17-70
-38-->/Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:27:25-67
+38                <action android:name="inft2501.RandomNumberActivity" />
+38-->/Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:27:17-72
+38-->/Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:27:25-69
 39
 40                <category android:name="android.intent.category.DEFAULT" />
 40-->/Users/sindreglomnes/Documents/Dataing/5.semester/Applikasjonsutvikling/Leksjon 2/app/src/main/AndroidManifest.xml:20:17-76

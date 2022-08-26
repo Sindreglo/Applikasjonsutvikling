@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="inft2501.exercise2.ChangeFlagActivity">
+    tools:context="inft2501.exercise2.RandomNumberActivity">
 
 
     <TextView
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/button_stop_activity"
         android:layout_centerHorizontal="true"
-        android:onClick="onClickEndreFlagg"
+        android:onClick="onClickDrawNewNumber"
         android:text="@string/generate_number" />
 
 </RelativeLayout>

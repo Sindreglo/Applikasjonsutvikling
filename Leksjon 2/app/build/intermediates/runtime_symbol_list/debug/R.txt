@@ -2289,6 +2289,8 @@ int string abc_searchview_description_voice 0x7f0e0017
 int string abc_shareactionprovider_share_with 0x7f0e0018
 int string abc_shareactionprovider_share_with_application 0x7f0e0019
 int string abc_toolbar_collapse_description 0x7f0e001a
+int string add 0x7f0e006b
+int string answer 0x7f0e006c
 int string app_name 0x7f0e001b
 int string appbar_scrolling_view_behavior 0x7f0e001c
 int string bottom_sheet_behavior 0x7f0e001d
@@ -2298,6 +2300,7 @@ int string character_counter_overflowed_content_description 0x7f0e0021
 int string character_counter_pattern 0x7f0e0022
 int string chip_text 0x7f0e0023
 int string clear_text_end_icon_content_description 0x7f0e0024
+int string correct 0x7f0e006d
 int string error_icon_content_description 0x7f0e0025
 int string exposed_dropdown_menu_content_description 0x7f0e0026
 int string fab_transformation_scrim_behavior 0x7f0e0027
@@ -2356,6 +2359,7 @@ int string mtrl_picker_toggle_to_calendar_input_mode 0x7f0e005a
 int string mtrl_picker_toggle_to_day_selection 0x7f0e005b
 int string mtrl_picker_toggle_to_text_input_mode 0x7f0e005c
 int string mtrl_picker_toggle_to_year_selection 0x7f0e005d
+int string multiply 0x7f0e006e
 int string password_toggle_content_description 0x7f0e005e
 int string path_password_eye 0x7f0e005f
 int string path_password_eye_mask_strike_through 0x7f0e0060
@@ -2366,6 +2370,8 @@ int string start_random_number 0x7f0e006a
 int string status_bar_notification_info_overflow 0x7f0e0066
 int string title_activity 0x7f0e0067
 int string to_main 0x7f0e0068
+int string upperLimit 0x7f0e006f
+int string wrong_the_correct_answer_is 0x7f0e0070
 int style AlertDialog_AppCompat 0x7f0f0000
 int style AlertDialog_AppCompat_Light 0x7f0f0001
 int style AndroidThemeColorAccentYellow 0x7f0f0002
