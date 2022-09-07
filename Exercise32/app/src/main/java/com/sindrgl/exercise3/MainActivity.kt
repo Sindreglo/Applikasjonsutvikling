@@ -15,10 +15,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.navArgument
+import androidx.navigation.compose.rememberNavController
 import com.sindrgl.exercise3.ui.theme.Exercise3Theme
 
 class MainActivity : ComponentActivity() {
@@ -59,31 +64,49 @@ class FriendsViewModel : ViewModel() {
 }
 
 @Composable
-fun mainBox(
+private fun mainBox(
     friends: List<Friend>,
     addFriend: (String, String) -> Unit,
-    editFriend: (Int, String, String) -> Unit) {
-    FriendsListScreen(friends, addFriend)
+    editFriend: (Int, String, String) -> Unit
+) {
+    val navController = rememberNavController()
+    NavHost(navController, startDestination = "friendsList") {
+        composable(route = "friendsList") {
+            FriendsListScreen(navController, friends, addFriend)
+        }
+        composable(
+            route = "friendDetails/{friendId}",
+            arguments = listOf(navArgument("friendId") { type = NavType.IntType })
+        ) {
+            FriendDetailsScreen(
+                navController,
+                it.arguments!!.getInt("friendId"),
+                friends,
+                editFriend
+            )
+        }
+    }
 }
 
 @Composable
 fun FriendsListScreen(
+    navController: NavController,
     friends: List<Friend>,
     addFriend: (String, String) -> Unit
 ) {
     Column {
         LazyColumn(contentPadding = PaddingValues(8.dp)) {
             item {
-                addFriendBox(addFriend)
+                AddFriendBox(addFriend)
                 Divider()
-                FriendsList(friends)
+                FriendsListBox(navController, friends)
             }
         }
     }
 }
 
 @Composable
-fun addFriendBox(
+fun AddFriendBox(
     addFriend: (String, String) -> Unit
 ) {
     val nameState = remember { mutableStateOf(TextFieldValue()) }
@@ -98,23 +121,25 @@ fun addFriendBox(
         TextField(
             value = nameState.value,
             onValueChange = { nameState.value = it },
-            label = { Text("Navn") })
+            label = { Text("Name") })
         TextField(
             value = birthdateState.value,
             onValueChange = { birthdateState.value = it },
-            label = { Text("Fødselsdag") }
+            label = { Text("Birthdate") }
         )
         Button(onClick = { add() }) {
-            Text("Add a friend")
+            Text("Add friend")
         }
     }
 }
 
 @Composable
-fun FriendsList(
+fun FriendsListBox(
+    navController: NavController,
     friends: List<Friend>,
 ) {
     fun add(id: Int) {
+        navController.navigate("friendDetails/${id}")
         Log.w("Friend", id.toString())
     }
     for (item in friends) {
@@ -129,3 +154,42 @@ fun FriendsList(
         }
     }
 }
+
+@Composable
+fun FriendDetailsScreen(
+    navController: NavController,
+    friendId: Int,
+    friends: List<Friend>,
+    editFriend: (Int, String, String) -> Unit
+) {
+    val friend = friends.find { it.id == friendId }
+        ?: return Scaffold {
+            Button(onClick = {
+                navController.navigate("friendsList")
+            }) {
+                Text("Something went wrong...")
+            }
+        }
+    val nameState = remember { mutableStateOf(TextFieldValue(text = friend.name)) }
+    val birthdateState = remember { mutableStateOf(TextFieldValue(text = friend.birthDate)) }
+    fun saveFriend() {
+        editFriend(friendId, nameState.value.text, birthdateState.value.text)
+        navController.navigate("friendsList")
+    }
+    Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()) {
+        Text(text = "Edit your friend", fontSize = 30.sp)
+        TextField(
+            value = nameState.value,
+            onValueChange = { nameState.value = it },
+            label = { Text("Name") })
+        TextField(
+            value = birthdateState.value,
+            onValueChange = { birthdateState.value = it },
+            label = { Text("Birthdate") }
+        )
+        Button(onClick = { saveFriend() }) {
+            Text("Save changes")
+        }
+    }
+}
+
