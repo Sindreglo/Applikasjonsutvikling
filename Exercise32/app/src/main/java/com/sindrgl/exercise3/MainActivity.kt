@@ -5,19 +5,19 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import com.sindrgl.exercise3.ui.theme.Exercise3Theme
 
@@ -74,9 +74,9 @@ fun FriendsListScreen(
     Column {
         LazyColumn(contentPadding = PaddingValues(8.dp)) {
             item {
-                Text(text = "Legg til venn")
                 addFriendBox(addFriend)
                 Divider()
+                FriendsList(friends)
             }
         }
     }
@@ -90,8 +90,11 @@ fun addFriendBox(
     val birthdateState = remember { mutableStateOf(TextFieldValue()) }
     fun add() {
         addFriend(nameState.value.text, birthdateState.value.text)
+        Log.w("Friend", nameState.value.text)
+        Log.w("Friend", birthdateState.value.text)
     }
-    Column {
+    Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()) {
+        Text(text = "Friends App!", fontSize = 30.sp)
         TextField(
             value = nameState.value,
             onValueChange = { nameState.value = it },
@@ -102,7 +105,27 @@ fun addFriendBox(
             label = { Text("Fødselsdag") }
         )
         Button(onClick = { add() }) {
-            Text("Legg til venn")
+            Text("Add a friend")
+        }
+    }
+}
+
+@Composable
+fun FriendsList(
+    friends: List<Friend>,
+) {
+    fun add(id: Int) {
+        Log.w("Friend", id.toString())
+    }
+    for (item in friends) {
+        Column (horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()) {
+            Row(horizontalArrangement = Arrangement.SpaceEvenly,verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
+                Text(item.name)
+                Text(item.birthDate)
+                Button(onClick = { add(item.id) }) {
+                    Text("Edit")
+                }
+            }
         }
     }
 }
