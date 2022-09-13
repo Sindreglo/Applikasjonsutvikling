@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Aktiviteter og intensjoner</string>
+    <string name="title_activity">Numbers</string>
+    <string name="to_main">Avslutt Aktivitet</string>
+    <string name="start_random_number">Start Random Number</string>
+    <string name="generate_number">Generer Number</string>
+    <string name="add">Adder</string>
+    <string name="multiply">Multipliser</string>
+    <string name="answer">Svar:</string>
+    <string name="upperLimit">Øvre grense:</string>
+    <string name="correct">Riktig!</string>
+    <string name="wrong_the_correct_answer_is">Feil. Riktig svar er</string>
+</resources>

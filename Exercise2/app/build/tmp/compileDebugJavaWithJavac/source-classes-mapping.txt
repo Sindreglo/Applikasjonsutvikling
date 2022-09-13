@@ -1,2 +1,0 @@
-inft2501/exercise2/BuildConfig.java
- inft2501.exercise2.BuildConfig
