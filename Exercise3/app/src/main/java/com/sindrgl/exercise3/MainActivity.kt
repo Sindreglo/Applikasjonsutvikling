@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
@@ -24,6 +25,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
+import com.sindrgl.exercise3.ui.Friend
 import com.sindrgl.exercise3.ui.theme.Exercise3Theme
 
 class MainActivity : ComponentActivity() {
@@ -144,14 +146,22 @@ fun FriendsListBox(
     }
     for (item in friends) {
         Column (horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()) {
-            Row(horizontalArrangement = Arrangement.SpaceEvenly,verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
-                Text(item.name)
-                Text(item.birthDate)
-                Button(onClick = { add(item.id) }) {
-                    Text("Edit")
-                }
-            }
+            FriendListItem(navController, item)
         }
+    }
+}
+
+@Composable
+fun FriendListItem(navController: NavController, friend: Friend) {
+    Column(
+        Modifier
+            .clickable { navController.navigate("friendDetails/${friend.id}") }
+            .padding(5.dp)) {
+        Row(horizontalArrangement = Arrangement.SpaceEvenly,verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
+            Text(friend.name)
+            Text(friend.birthDate)
+        }
+        Divider()
     }
 }
 
@@ -192,4 +202,3 @@ fun FriendDetailsScreen(
         }
     }
 }
-
