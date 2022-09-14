@@ -1,7 +1,6 @@
 package com.sindrgl.exercise4
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -9,18 +8,14 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import com.sindrgl.exercise4.ui.theme.Exercise4Theme
-import coil.compose.ImagePainter
 import coil.compose.rememberAsyncImagePainter
-import coil.compose.rememberImagePainter
 
 class ImagesViewModel : ViewModel() {
 
@@ -37,8 +32,6 @@ class ImagesViewModel : ViewModel() {
             "Harry Potter and the Prisoner of Azkaban",
             "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1630547330i/5._SY180_.jpg"
         ),
-
-
         ImageObj(
             "Harry Potter and the Goblet of Fire",
             "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1554006152i/6._SX120_.jpg"
@@ -51,7 +44,6 @@ class ImagesViewModel : ViewModel() {
             "Harry Potter and the Half-Blood Prince",
             "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1587697303i/1._SX120_.jpg"
         ),
-
         ImageObj(
             "Harry Potter and the Deathly Hallows",
             "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1661250233i/136251._SY180_.jpg"
@@ -64,6 +56,28 @@ class ImagesViewModel : ViewModel() {
     )
         private set
 
+    var currentImage by mutableStateOf(0)
+        private set
+
+    fun setImage(index: Int) {
+        currentImage = index
+    }
+
+    fun showNextImage() {
+        if (currentImage < images.size - 1) {
+            currentImage++
+        } else {
+            currentImage = 0
+        }
+    }
+
+    fun showPreviousImage() {
+        if (currentImage == 0) {
+            currentImage = images.size - 1
+        } else {
+            currentImage--
+        }
+    }
 
 }
 
@@ -80,7 +94,12 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Main(imagesViewModel.images)
+                    Main(imagesViewModel.images,
+                        imagesViewModel::setImage,
+                        imagesViewModel.currentImage,
+                        imagesViewModel::showNextImage,
+                        imagesViewModel::showPreviousImage
+                    )
                 }
             }
         }
@@ -90,6 +109,10 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Main(
     images: List<ImageObj>,
+    setImage: (Int) -> Unit,
+    currentImage: Int,
+    showNextImage: () -> Unit,
+    showPreviousImage: () -> Unit
 ) {
     Box() {
         Column() {
@@ -98,7 +121,7 @@ fun Main(
                     .weight(1.0f)
                     .fillMaxWidth()
             ) {
-                List(images)
+                ListFragment(images, setImage)
             }
 
             Row(
@@ -106,17 +129,17 @@ fun Main(
                     .weight(1.0f)
                     .fillMaxWidth()
             ) {
-                imageFromURL()
+                ImageFragment(images, currentImage, showNextImage, showPreviousImage)
             }
         }
     }
 }
 
 @Composable
-fun List(images: List<ImageObj>) {
+fun ListFragment(images: List<ImageObj>, setImage: (Int) -> Unit) {
     LazyColumn {
         items(images.size) { index ->
-            Button(onClick = { Log.w("click", "Clicked") }, modifier = Modifier.fillMaxWidth()) {
+            Button(onClick = { setImage(index) }, modifier = Modifier.fillMaxWidth()) {
                 Text(text = images[index].label)
             }
         }
@@ -124,35 +147,52 @@ fun List(images: List<ImageObj>) {
 }
 
 @Composable
-fun imageFromURL() {
-    // on below line we are creating a column,
+fun ImageFragment(
+    images: List<ImageObj>,
+    currentImage: Int,
+    showNextImage: () -> Unit,
+    showPreviousImage: () -> Unit
+) {
+    Column(modifier = Modifier.fillMaxHeight(), Arrangement.SpaceBetween) {
+        Row() {
+            Button(
+                onClick = showPreviousImage, modifier = Modifier
+                    .weight(1.0f)
+                    .fillMaxWidth()
+            ) {
+                Text(text = "<- Forrige")
+            }
+            Button(
+                onClick = showNextImage, modifier = Modifier
+                    .weight(1.0f)
+                    .fillMaxWidth()
+            ) {
+                Text(text = "Neste ->")
+            }
+        }
+        ImageFromURL(images[currentImage])
+    }
+}
+
+@Composable
+fun ImageFromURL(
+    image: ImageObj,
+) {
     Column(
-        // in this column we are adding modifier
-        // to fill max size, mz height and max width
         modifier = Modifier
             .fillMaxSize()
             .fillMaxHeight()
             .fillMaxWidth()
-            // on below line we are adding
-            // padding from all sides.
             .padding(10.dp),
-        // on below line we are adding vertical
-        // and horizontal arrangement.
+
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // on below line we are adding image for our image view.
+
+        Text(image.label)
         Image(
-            // on below line we are adding the image url
-            // from which we will  be loading our image.
-            painter = rememberAsyncImagePainter("https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1587697303i/1._SX120_.jpg"),
-
-            // on below line we are adding content
-            // description for our image.
-            contentDescription = "gfg image",
-
-            // on below line we are adding modifier for our
-            // image as wrap content for height and width.
+            painter = rememberAsyncImagePainter(image.url),
+            contentDescription = image.label,
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxHeight()
         )
