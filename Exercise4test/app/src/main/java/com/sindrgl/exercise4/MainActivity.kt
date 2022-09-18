@@ -1,18 +1,23 @@
 package com.sindrgl.exercise4
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import com.sindrgl.exercise4.ui.theme.Exercise4Theme
 import coil.compose.rememberAsyncImagePainter
@@ -88,20 +93,56 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Exercise4Theme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Main(imagesViewModel.images,
-                        imagesViewModel::setImage,
-                        imagesViewModel.currentImage,
-                        imagesViewModel::showNextImage,
-                        imagesViewModel::showPreviousImage
-                    )
+
+            Scaffold(
+
+                // Creating a Top Bar
+                topBar = { TopAppBar(
+                    title = {
+                            Text("Books App!")
+                        Button(onClick = { /*TODO*/ }) {
+                            Text("Previous")
+                        }
+                        Button(onClick = { /*TODO*/ }) {
+                            Text("Next")
+                        }
+
+                    },
+                    backgroundColor = Color(0xff0f9d58)) },
+                content = {
+
+                    // Creating a Column to display Text
+                    Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
+
+                        // Fetching current app configuration
+                        val configuration = LocalConfiguration.current
+
+                        // When orientation is Landscape
+                        when (configuration.orientation) {
+                            Configuration.ORIENTATION_LANDSCAPE -> {
+                                Main(imagesViewModel.images,
+                                    imagesViewModel::setImage,
+                                    imagesViewModel.currentImage,
+                                    imagesViewModel::showNextImage,
+                                    imagesViewModel::showPreviousImage,
+                                    2,
+                                )
+                            }
+
+                            // Other wise
+                            else -> {
+                                Main(imagesViewModel.images,
+                                    imagesViewModel::setImage,
+                                    imagesViewModel.currentImage,
+                                    imagesViewModel::showNextImage,
+                                    imagesViewModel::showPreviousImage,
+                                1,
+                                )
+                            }
+                        }
+                    }
                 }
-            }
+            )
         }
     }
 }
@@ -112,34 +153,42 @@ fun Main(
     setImage: (Int) -> Unit,
     currentImage: Int,
     showNextImage: () -> Unit,
-    showPreviousImage: () -> Unit
+    showPreviousImage: () -> Unit,
+    orientation: Int,
 ) {
-    Box() {
-        Column() {
-            Row(
-                modifier = Modifier
-                    .weight(1.0f)
-                    .fillMaxWidth()
-            ) {
-                ListFragment(images, setImage)
-            }
+        if (orientation == 1) {
+            Column() {
+                Row(
+                    modifier = Modifier
+                        .weight(1.0f)
+                        .fillMaxWidth()
+                ) {
+                    ListFragment(images, setImage)
+                }
 
-            Row(
-                modifier = Modifier
-                    .weight(1.0f)
-                    .fillMaxWidth()
-            ) {
-                ImageFragment(images, currentImage, showNextImage, showPreviousImage)
+                Row(
+                    modifier = Modifier
+                        .weight(1.0f)
+                        .fillMaxWidth()
+                ) {
+                    ImageFragment(images, currentImage, showNextImage, showPreviousImage)
+                }
+            }
+        } else {
+            Column() {
+                Row(horizontalArrangement = Arrangement.SpaceEvenly,verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
+                    ListFragment(images, setImage)
+                    ImageFragment(images, currentImage, showNextImage, showPreviousImage)
+                }
             }
         }
-    }
 }
 
 @Composable
 fun ListFragment(images: List<ImageObj>, setImage: (Int) -> Unit) {
     LazyColumn {
         items(images.size) { index ->
-            Button(onClick = { setImage(index) }, modifier = Modifier.fillMaxWidth()) {
+            Button(onClick = { setImage(index) }, modifier = Modifier.width(400.dp)) {
                 Text(text = images[index].label)
             }
         }
