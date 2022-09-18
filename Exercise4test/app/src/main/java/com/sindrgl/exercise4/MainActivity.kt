@@ -99,16 +99,18 @@ class MainActivity : ComponentActivity() {
                 // Creating a Top Bar
                 topBar = { TopAppBar(
                     title = {
+                        Row(horizontalArrangement = Arrangement.SpaceEvenly,verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
                             Text("Books App!")
-                        Button(onClick = { /*TODO*/ }) {
-                            Text("Previous")
+                            Row(horizontalArrangement = Arrangement.End,modifier = Modifier.fillMaxWidth()) {
+                                Button(onClick = { imagesViewModel.showPreviousImage() }) {
+                                    Text("Previous")
+                                }
+                                Button(onClick = { imagesViewModel.showNextImage() }) {
+                                    Text("Next")
+                                }
+                            }
                         }
-                        Button(onClick = { /*TODO*/ }) {
-                            Text("Next")
-                        }
-
-                    },
-                    backgroundColor = Color(0xff0f9d58)) },
+                    })},
                 content = {
 
                     // Creating a Column to display Text
@@ -123,8 +125,6 @@ class MainActivity : ComponentActivity() {
                                 Main(imagesViewModel.images,
                                     imagesViewModel::setImage,
                                     imagesViewModel.currentImage,
-                                    imagesViewModel::showNextImage,
-                                    imagesViewModel::showPreviousImage,
                                     2,
                                 )
                             }
@@ -134,8 +134,6 @@ class MainActivity : ComponentActivity() {
                                 Main(imagesViewModel.images,
                                     imagesViewModel::setImage,
                                     imagesViewModel.currentImage,
-                                    imagesViewModel::showNextImage,
-                                    imagesViewModel::showPreviousImage,
                                 1,
                                 )
                             }
@@ -152,8 +150,6 @@ fun Main(
     images: List<ImageObj>,
     setImage: (Int) -> Unit,
     currentImage: Int,
-    showNextImage: () -> Unit,
-    showPreviousImage: () -> Unit,
     orientation: Int,
 ) {
         if (orientation == 1) {
@@ -171,14 +167,14 @@ fun Main(
                         .weight(1.0f)
                         .fillMaxWidth()
                 ) {
-                    ImageFragment(images, currentImage, showNextImage, showPreviousImage)
+                    ImageFragment(images, currentImage)
                 }
             }
         } else {
             Column() {
                 Row(horizontalArrangement = Arrangement.SpaceEvenly,verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
                     ListFragment(images, setImage)
-                    ImageFragment(images, currentImage, showNextImage, showPreviousImage)
+                    ImageFragment(images, currentImage)
                 }
             }
         }
@@ -199,26 +195,8 @@ fun ListFragment(images: List<ImageObj>, setImage: (Int) -> Unit) {
 fun ImageFragment(
     images: List<ImageObj>,
     currentImage: Int,
-    showNextImage: () -> Unit,
-    showPreviousImage: () -> Unit
 ) {
     Column(modifier = Modifier.fillMaxHeight(), Arrangement.SpaceBetween) {
-        Row() {
-            Button(
-                onClick = showPreviousImage, modifier = Modifier
-                    .weight(1.0f)
-                    .fillMaxWidth()
-            ) {
-                Text(text = "<- Forrige")
-            }
-            Button(
-                onClick = showNextImage, modifier = Modifier
-                    .weight(1.0f)
-                    .fillMaxWidth()
-            ) {
-                Text(text = "Neste ->")
-            }
-        }
         ImageFromURL(images[currentImage])
     }
 }
