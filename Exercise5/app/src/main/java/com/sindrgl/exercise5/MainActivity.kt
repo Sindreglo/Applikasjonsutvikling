@@ -26,12 +26,12 @@ enum class AppView {
     GAME,
 }
 
-enum class GameState {
-    BEFORE_FIRST_GUESS,
-    BEFORE_SECOND_GUESS,
-    BEFORE_THIRD_GUESS,
-    CORRECT_GUESS,
-    NO_MORE_GUESSES,
+enum class States {
+    GUESS_1,
+    GUESS_2,
+    GUESS_3,
+    CORRECT,
+    WRONG,
 }
 
 class GameViewModel : ViewModel() {
@@ -39,27 +39,27 @@ class GameViewModel : ViewModel() {
     private val BASE_URL = "https://bigdata.idi.ntnu.no/mobil/tallspill.jsp"
     private val network: HttpWrapper = HttpWrapper(BASE_URL)
 
-    var viewOpen by mutableStateOf(AppView.START)
-    var gameState by mutableStateOf(GameState.BEFORE_FIRST_GUESS)
+    var start_game by mutableStateOf(AppView.START)
+    var states by mutableStateOf(States.GUESS_1)
         private set
 
-    var feedback: String? = null
+    var httpResponseMessage: String? = null
         private set
 
-    private fun showFeedback(message: String) {
+    private fun httpResponse(message: String) {
         Log.i("Snackbar", "Opening snackbar with message: $message")
-        feedback = message.substringBefore("null")
+        httpResponseMessage = message.substringBefore("null")
     }
 
     fun openView(view: AppView) {
         if (view == AppView.GAME) {
-            gameState = GameState.BEFORE_FIRST_GUESS
+            states = States.GUESS_1
         }
-        viewOpen = view
-        feedback = null
+        start_game = view
+        httpResponseMessage = null
     }
 
-    fun startGame(name: String, cardNumber: String) {
+    fun userInfo(name: String, cardNumber: String) {
         Log.i("StartGame", "Starting game by sending request")
         performRequest(network, mapOf("navn" to name, "kortnummer" to cardNumber)) {
             Log.i("StartGame", "Received response to startGame request: $it")
@@ -68,24 +68,24 @@ class GameViewModel : ViewModel() {
                 Log.i("StartGame", "StartGame request succeeded")
                 openView(AppView.GAME)
             }
-            showFeedback(it)
+            httpResponse(it)
         }
     }
 
-    fun guessNumber(number: String) {
+    fun gameOn(number: String) {
         Log.i("GuessNumber", "Guessing number by sending request")
         performRequest(network, mapOf("tall" to number)) {
             Log.i("GuessNumber", "Received response to GuessNumber request: $it")
             val wonSuccessMsg = "du har vunnet 100 kr som kommer inn på ditt kort"
-            showFeedback(it)
+            httpResponse(it)
             if (it.contains(wonSuccessMsg, ignoreCase = true)) {
-                gameState = GameState.CORRECT_GUESS
+                states = States.CORRECT
                 Log.i("GuessNumber", "Correct guess")
             } else {
-                when (gameState) {
-                    GameState.BEFORE_FIRST_GUESS -> gameState = GameState.BEFORE_SECOND_GUESS
-                    GameState.BEFORE_SECOND_GUESS -> gameState = GameState.BEFORE_THIRD_GUESS
-                    GameState.BEFORE_THIRD_GUESS -> gameState = GameState.NO_MORE_GUESSES
+                when (states) {
+                    States.GUESS_1 -> states = States.GUESS_2
+                    States.GUESS_2 -> states = States.GUESS_3
+                    States.GUESS_3 -> states = States.WRONG
                     else -> Log.e("Gamestate", "Gamestate is in an unknown state")
                 }
             }
@@ -122,25 +122,34 @@ class MainActivity : ComponentActivity() {
                 Surface(color = MaterialTheme.colors.background) {
                     Scaffold {
                         Column {
-                            if (gameViewModel.viewOpen == AppView.START) {
-                                StartView(gameViewModel::startGame)
-                            } else {
-                                GameView(
-                                    gameViewModel::guessNumber,
-                                    gameViewModel.gameState,
-                                    gameViewModel::openView
-                                )
-                            }
-                            if (gameViewModel.feedback != null) {
+                            Text(
+                                text = "FREE money NO risk!!!",
+                                fontSize = 25.sp,
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(100.dp)
+                                    .wrapContentHeight()
+                            )
+                            if (gameViewModel.httpResponseMessage != null) {
                                 Text(
-                                    text = gameViewModel.feedback!!,
+                                    text = gameViewModel.httpResponseMessage!!,
                                     textAlign = TextAlign.Center,
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .height(100.dp)
                                         .wrapContentHeight()
                                 )
-                                Log.i("hmm", "---${gameViewModel.feedback}---")
+                                Log.i("response", "${gameViewModel.httpResponseMessage}")
+                            }
+                            if (gameViewModel.start_game == AppView.START) {
+                                UserView(gameViewModel::userInfo)
+                            } else {
+                                GuessView(
+                                    gameViewModel::gameOn,
+                                    gameViewModel.states,
+                                    gameViewModel::openView
+                                )
                             }
                         }
                     }
@@ -151,14 +160,13 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun StartView(startGame: (String, String) -> Unit,) {
+fun UserView(startGame: (String, String) -> Unit,) {
     val nameState = remember { mutableStateOf(TextFieldValue()) }
     val cardState = remember { mutableStateOf(TextFieldValue()) }
     fun add() {
         startGame(nameState.value.text, cardState.value.text)
     }
     Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()) {
-        Text(text = "Free_Bitcoins.exe", fontSize = 25.sp)
         TextField(
             value = nameState.value,
             onValueChange = { nameState.value = it },
@@ -175,9 +183,9 @@ fun StartView(startGame: (String, String) -> Unit,) {
 }
 
 @Composable
-fun GameView(
+fun GuessView(
     guessNumber: (String) -> Unit,
-    gameState: GameState,
+    states: States,
     setViewOpen: (AppView) -> Unit,
 ) {
     val guessState = remember { mutableStateOf(TextFieldValue()) }
@@ -185,10 +193,8 @@ fun GameView(
         guessNumber(guessState.value.text)
     }
     Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()) {
-        Text(text = "Free_Bitcoins.exe", fontSize = 25.sp)
-        when (gameState) {
-            GameState.BEFORE_FIRST_GUESS, GameState.BEFORE_SECOND_GUESS, GameState.BEFORE_THIRD_GUESS -> {
-                Text("Skriv inn det tallet du tror er riktig",textAlign = TextAlign.Center)
+        when (states) {
+            States.GUESS_1, States.GUESS_2, States.GUESS_3 -> {
                 TextField(
                     value = guessState.value,
                     onValueChange = { guessState.value = it },
@@ -197,15 +203,12 @@ fun GameView(
                     Text("Gjett tall")
                 }
             }
-            GameState.NO_MORE_GUESSES -> {
-                Text("Du har brukt opp dine forsøk på å gjette riktig, start et nytt spill for å prøve på nytt",textAlign = TextAlign.Center)
+            States.WRONG -> {
                 Button(onClick = { setViewOpen(AppView.START) }) {
                     Text("Start nytt spill")
                 }
             }
-            GameState.CORRECT_GUESS -> {
-                Text("Du har gjettet riktig! Gratulerer!",textAlign = TextAlign.Center)
-
+            States.CORRECT -> {
                 Button(onClick = { setViewOpen(AppView.START) }) {
                     Text("Start nytt spill")
                 }
